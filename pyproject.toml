@@ -1,0 +1,24 @@
+[tool.poetry]
+name = "loci"
+version = "0.1.0"
+description = ""
+authors = ["YourName <your.name@example.com>"]
+readme = "README.md"
+packages = [{include = "loci", from = "src"}]
+
+[tool.poetry.dependencies]
+python = "^3.12"
+
+[tool.poetry.scripts]
+async_do_jobs = "loci.async_do_jobs:main"
+async_signal_handling = "loci.async_signal_handling:main"
+
+# each of them is a synchronous task, which is called from a shellscript
+# but executed asynchronously.
+long_task_1 = "loci.app:long_task_1_sync"
+long_task_2 = "loci.app:long_task_2_sync"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
